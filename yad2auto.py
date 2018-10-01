@@ -48,7 +48,9 @@ element.click()
 driver.get_screenshot_as_file('after-open-ad.png')
 
 # update ad
-element = driver.find_element_by_xpath("//*[@id=\"bounceRatingOrderBtn\"]/span")
+driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))
+driver.switch_to.default_content()
+element = driver.find_element_by_xpath("//*[@id=\"order_form\"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div")
 element.click()
 
 # take screenshot
