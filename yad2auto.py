@@ -13,11 +13,11 @@ options.add_argument("window-size=1200x600")
 driver = webdriver.Chrome(executable_path=constant.CHROMEDRIVER, chrome_options=options)
 
 driver.get("http://www.yad2.co.il/")
-driver.implicitly_wait(5)
+driver.implicitly_wait(2)
 driver.execute_script("window.scrollTo(0, 200)")
-driver.implicitly_wait(5)
-# take screenshot
-driver.get_screenshot_as_file("main-page.png")
+# driver.implicitly_wait(2)
+# # take screenshot
+# driver.get_screenshot_as_file("main-page.png")
 
 # enter email
 element = driver.find_element_by_css_selector("#login_email")
@@ -36,7 +36,7 @@ element = driver.find_element_by_xpath(
 element.click()
 
 # take screenshot
-driver.get_screenshot_as_file("login-page.png")
+# driver.get_screenshot_as_file("login-page.png")
 
 # move to AD
 driver.get(
@@ -44,21 +44,24 @@ driver.get(
 )
 
 # take screenshot
-driver.get_screenshot_as_file("ad-page.png")
+# driver.get_screenshot_as_file("ad-page.png")
 
 # open ad
 element = driver.find_element_by_xpath('//*[@id="feed"]/tbody/tr[2]/td[9]/div')
 element.click()
 
 # take screenshot
-driver.get_screenshot_as_file("after-open-ad.png")
+# driver.get_screenshot_as_file("after-open-ad.png")
 
-# # update ad
-# driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))
+# update ad
+iframes = driver.find_elements_by_tag_name("iframe")
+print("<--- iframes --->")
+print(iframes)
+driver.switch_to.frame(iframes[5])
 # driver.switch_to.default_content()
-# element = driver.find_element_by_xpath("//*[@id=\"order_form\"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div")
-# element.click()
+element = driver.find_element_by_xpath('//*[@id="bounceRatingOrderBtn"]/span')
+element.click()
 
-# # take screenshot
-# driver.get_screenshot_as_file('after-updtae-page.png')
+# take screenshot
+# driver.get_screenshot_as_file("after-updtae-page.png")
 
