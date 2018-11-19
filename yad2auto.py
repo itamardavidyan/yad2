@@ -15,13 +15,15 @@ def auto_click(email, password):
         executable_path=constant.CHROMEDRIVER, chrome_options=options
     )
 
-    ITEMS = [
-        "https://my.yad2.co.il/newOrder/index.php?action=personalAreaViewDetails&CatID=3&SubCatID=0&OrderID=36970528",
-        "https://my.yad2.co.il/newOrder/index.php?action=personalAreaViewDetails&CatID=3&SubCatID=0&OrderID=37257498"
-    ]
+    ITEMS = [line.rstrip("\n") for line in open("items.txt")]
+
     connect(driver, email, password)
 
-    update_ad(driver, ITEMS[0])
+    for item in ITEMS:
+        update_ad(driver, item)
+        print("<!----- ", item, " -----!>")
+
+    print("<!----- end -----!>")
 
 
 def connect(driver, email, password):
@@ -57,7 +59,8 @@ def connect(driver, email, password):
 def update_ad(driver, item):
     # move to AD
     try:
-        driver.get(item)
+        url = "https://my.yad2.co.il/newOrder/index.php?action=personalAreaViewDetails&CatID=3&SubCatID=0&OrderID=" + item
+        driver.get(url)
     except Exception as e:
         save_error(driver, "move to AD", str(e))
 
