@@ -1,4 +1,4 @@
 from yad2auto import auto_click
-import constant3
+import auth
 
-auto_click(mail, password)
+auto_click(auth.EMAIL, auth.PASSWORD)
