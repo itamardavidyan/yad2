@@ -4,9 +4,10 @@
 1. Install python
 2. clone the repo
 3. Create auth file:
-  ```
-    EMAIL=youremail@example.com
-    PASSWORD=yoursecretpassword
+```
+  EMAIL=youremail@example.com
+  PASSWORD=yoursecretpassword
+```
 
 4. Update the path of the repo @ `start.bat` file
 5. Update `CHROMELOCATION` and `CHROMEDRIVER` constants @ `constant.py` file
